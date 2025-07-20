@@ -49,7 +49,7 @@ WUPS_USE_WUT_DEVOPTAB();
 
 OSThread socketThread;
 uint8_t socketThreadStack[SOCKET_THREAD_STACK_SIZE] __attribute__((aligned(8)));
-bool socketThreadRunning = false;
+volatile bool socketThreadRunning = false;
 
 int serverSock = -1;
 int clientSock = -1;
@@ -146,8 +146,6 @@ int socketThreadFunc(int arg, const char** argv)
         return 0;
     }
 
-    NotificationInfof("socketThreadRunning %d", socketThreadRunning);
-    socketThreadRunning = true;
     while (socketThreadRunning)
     {
         socklen_t clientAddrLen = sizeof(clientAddr);
@@ -166,8 +164,8 @@ int socketThreadFunc(int arg, const char** argv)
             while (socketThreadRunning)
             {
                 int received = recv(clientSock, buffer, sizeof(buffer) - 1, 0);
-                //if (received <= 0)
-                //    break;
+                // if (received <= 0)
+                //     break;
 
                 buffer[received] = '\0';
 
@@ -181,11 +179,10 @@ int socketThreadFunc(int arg, const char** argv)
                     uint32_t addr = 0;
                     if (sscanf(buffer + 1, "%X", &addr) == 1) {
                         uint32_t value = *(volatile uint32_t*)addr;
-                        //NotificationInfof("Reading from %08X value %08X", addr, value);
                         send(clientSock, &value, sizeof(value), 0);
                     }
                 } else if (buffer[0] == 's') {
-                    WPADiShutdown();
+                    break;
                 }
             }
 
@@ -200,6 +197,8 @@ int socketThreadFunc(int arg, const char** argv)
         socketclose(serverSock);
         serverSock = -1;
     }
+    
+    NotificationInfof("Client disconnected");
 
     return 0;
 }

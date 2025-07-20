@@ -1,0 +1,26 @@
+{
+    "configurations": [
+        {
+            "name": "Makefile",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:/devkitPro/wut/include",
+                "C:/devkitPro/wups/include",
+                "C:/devkitPro/wums/include",
+                "C:/devkitPro/devkitPPC/powerpc-eabi/include"
+            ],
+            "defines": [
+                "DEBUG",
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "_MSC_VER"
+            ],
+            "windowsSdkVersion": "10.0.22621.0",
+            "cStandard": "c23",
+            "cppStandard": "c++26",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}

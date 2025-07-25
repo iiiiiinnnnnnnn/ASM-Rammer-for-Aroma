@@ -38,6 +38,7 @@ make
 w 0xAAAAAAAA 0xVVVVVVVV
 ```
 
+※↓未実装
 * アドレス `0xAAAAAAAA` に 32bit 値 `0xVVVVVVVV` を書き込みます。
 
 ```

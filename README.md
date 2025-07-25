@@ -40,7 +40,7 @@ w 0xAAAAAAAA 0xVVVVVVVV
 
 * アドレス `0xAAAAAAAA` に 32bit 値 `0xVVVVVVVV` を書き込みます。
 
-※↓未実装
+※↓未実装  
 ```
 r 0xAAAAAAAA
 ```
@@ -55,6 +55,6 @@ r 0xAAAAAAAA
 
 ## クライアントソフト
 
-※↓未公開
+※↓未公開  
 Windows向けに専用クライアントソフト「**ASM Rammer PC**」も用意されています。
 GUIで上記コマンドを簡単に送信できます。
